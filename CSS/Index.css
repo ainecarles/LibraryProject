@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(146, 146, 230);
+    height: 100vh;
+    margin: 0;
+}
+
+.buttonRow{
+    display: flex;
+    flex-direction: row;
+    gap: 10vw;
+}
+
+
+
+
