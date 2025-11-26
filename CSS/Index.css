@@ -1,18 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Montserrat&family=Sacramento&display=swap");/*Import fonts*/
+
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(146, 146, 230);
-    height: 100vh;
+    background-color: #EDE6D6;
     margin: 0;
+    font-family: "Merriweather Sans", sans-serif;
 }
 
-.buttonRow{
+
+p {
+    color:#513330;
+}
+
+.pageContent{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+.leftContent{
+    max-width: 40%;
+}
+
+.leftContent p{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.welcome {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.rightImg img {
+    float: right;
+    width: 45vw;
+    max-width: 600px;
+    border-radius: 20px;
+}
+
+
+.buttonRow {
     display: flex;
     flex-direction: row;
     gap: 10vw;
 }
+
+.buttonRow a{
+    padding: 20px 50px;
+    border-radius: 25px;
+    background-color: #513330;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 6px 25px #1f1413;
+    box-shadow: 0 4px 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+.buttonRow a:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px #1f1413;
+
+}
+
+.navTitle{
+    padding-left: 15px;
+}
+
+.logo img{
+    height: 4.5em;
+    width: auto; 
+    font-size: 1.2rem;
+    margin-left: 2rem;
+}
+
+.container{
+    position: sticky;
+    top:0;
+    height: 70px;
+    background-color: #EDE6D6;
+    font-size: 1rem;
+    border-bottom: 1px solid #d4c6af;
+    z-index: 2  ;
+
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.navbar ul{
+    display: flex;
+    margin-left: auto;
+    margin-right: 40px;
+}
+
+.navbar ul li{
+    list-style-type: none;
+}
+
+.container .navbar{
+    justify-content: space-between;
+}
+
+.container .navbar ul li {
+  padding: 10px;
+  margin: 0 40px;
+}
+
+ul li a{
+    color: #513330;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border 0.3s ease-in-out;
+
+}
+
+ul li a:hover{
+    border-bottom: 2px solid #513330;
+    
+    
+}
+
 
 
 
