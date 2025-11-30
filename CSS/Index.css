@@ -39,7 +39,8 @@
 body {
     background-color: var(--primary-bg);
     font-family: var(--font-primary);
-    overflow: hidden;/* No scrolling */
+    overflow: hidden;
+    
 }
 
 p {
@@ -135,7 +136,7 @@ a {
 .rightImg img {
     width: 45vw;
     max-width: 600px;
-    border-radius: 20px;
+    border-radius: var(--border-radius);
 }
 
 /* Buttons (Login and Signup) */
@@ -161,7 +162,7 @@ a {
 
 .btn1 {
     background-color: var(--primary-dark);
-    color: white;
+    color: white;   
 }
 
 .btn2 {
@@ -173,3 +174,15 @@ a {
 /* Button Positioning */
 .btn1 { grid-column: 1; justify-self: start; }
 .btn2 { grid-column: 2; justify-self: start; }
+
+/* Footer */
+footer {
+    border-top: 1px solid var(--accent-light);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-lg);
+    color: var(--shadow-color); 
+}

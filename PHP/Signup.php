@@ -24,129 +24,168 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
     <title>Dublin Libraries Signup</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content="Sign Up Page" />
+    <link rel="stylesheet" href="../CSS/Signup.css">
 </head>
 
 <body>
-    <h1>Sign Up</h1>
 
-    <!-- Sign up form -->
-    <form action="Insert.php" method="post">
+    <!-- Nav Bar -->
+    <div class="container">
 
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" name="username" placeholder="Eg: user_123"
-            value="<?php echo htmlspecialchars($u); ?>" required><!--Remember input values -->
+        <div class="navbar">
 
-            <!-- Display Username Errors -->
-             <?php 
-             if (isset($errors['whiteSpaceU'])) echo "<p>{$errors['whiteSpaceU']}</p>";
-             if (isset($errors['incoorectCharU'])) echo "<p>{$errors['incorrectCharU']}</p>";
-             if (isset($errors['duplicateU'])) echo "<p>{$errors['duplicateU']}</p>";
-             ?>
+            <div class="logo">
+                <img src="../Media/Logo.png" alt="Brand Logo">
+            </div>
+
+            <p class="navTitle">Irish Libraries</p>
+
+            <ul>
+                <li><a href="../Index.html">Home</a></li>
+                <li><a href="PHP/Login.php>">Search a Book</a></li>
+            </ul>
         </div>
+    </div>
 
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" name="password" required>
-            
-            <!-- Display Password errors -->
-             <?php
-             if (isset($errors['noMatchP'])) echo "<p>{$errors['noMatchP']}</p>";
-             if (isset($errors['shortP'])) echo "<p>{$errors['shortP']}</p>";
-             ?>
-        </div>
+    <div class="pageContent">
+        <h3 class="header">Sign Up</h3>
+        <p class="header">Create your account to start reserving books</p>
 
-        <div>
-            <label for="confirmPassword">Confirm Password:</label>
-            <input type="password" name="confirmPassword" required>
-        </div>
+        <!-- Sign up form -->
+         <div class="formBox">
+            <form action="Insert.php" method="post">
 
-        <div>
-            <label for="firstName">First Name:</label>
-            <input type="text" name="firstName" 
-            value="<?php echo htmlspecialchars($f); ?>"required>
+                <div class="field">
+                    <label for="username" class="required">Username</label>
+                    <input type="text" name="username" placeholder="Eg: user_123"
+                    value="<?php echo htmlspecialchars($u); ?>"><!--Remember input values -->
 
-            <!-- Display First Name Errors -->
-            <?php
-            if (isset($errors['incorrectCharN'])) echo "<p>{$errors['incorrectCharN']}</p>";
-            ?>            
-        </div>
+                    <!-- Display Username Errors -->
+                    <?php 
+                    if (isset($errors['whiteSpaceU'])) echo "<p class='error'>{$errors['whiteSpaceU']}</p>";
+                    if (isset($errors['incorrectCharU'])) echo "<p class='error'>{$errors['incorrectCharU']}</p>";
+                    if (isset($errors['duplicateU'])) echo "<p class='error'>{$errors['duplicateU']}</p>";
+                    ?>
+                </div>
 
-        <div>
-            <label for="surname">Surname:</label>
-            <input type="text" name="surname" 
-            value="<?php echo htmlspecialchars($s); ?>"required>
+                <div class="twoCol">
+                    <div class="field">
+                        <label for="password" class="required">Password</label>
+                        <input type="password" name="password" placeholder="Min. 6 characters">
+                        
+                        <!-- Display Password errors -->
+                        <?php
+                        if (isset($errors['noMatchP'])) echo "<p class='error'>{$errors['noMatchP']}</p>";
+                        if (isset($errors['shortP'])) echo "<p class='error'>{$errors['shortP']}</p>";
+                        ?>
+                    </div>
 
-            <!-- Display Surname Errors -->
-            <?php
-            if (isset($errors['incorrectCharN'])) echo "<p>{$errors['incorrectCharN']}</p>";
-            ?>    
-        </div>
+                    <div class="field">
+                        <label for="confirmPassword" class="required">Confirm Password</label>
+                        <input type="password" name="confirmPassword" placeholder="Re-enter password">
+                    </div>
+                </div><!-- End twoCol -->
 
-        <div>
-            <label for="addressLine1">Address Line 1:</label>
-            <input type="text" name="addressLine1" placeholder="Eg. 24 Main Street"
-            value="<?php echo htmlspecialchars($a1); ?>"required>
+                <div class="twoCol">
+                    <div class="field">
+                        <label for="firstName" class="required">First Name</label>
+                        <input type="text" name="firstName" placeholder="John"
+                        value="<?php echo htmlspecialchars($f); ?>">
 
-            <!-- Display Address Errors -->
-            <?php
-            if (isset($errors['incorrectCharA'])) echo "<p>{$errors['incorrectCharA']}</p>";
-            ?>
-        </div>
+                        <!-- Display First Name Errors -->
+                        <?php
+                        if (isset($errors['incorrectCharN'])) echo "<p class='error'>{$errors['incorrectCharN']}</p>";
+                        ?>            
+                    </div>
 
-        <div>
-            <label for="addressLine2">Address Line 2:</label>
-            <input type="text" name="addressLine2"
-            value="<?php echo htmlspecialchars($a2);?>">
+                    <div class="field">
+                        <label for="surname" class="required">Surname</label>
+                        <input type="text" name="surname" placeholder="Doe" 
+                        value="<?php echo htmlspecialchars($s); ?>">
 
-            <!-- Display Address Errors -->
-            <?php
-            if (isset($errors['incorrectCharA'])) echo "<p>{$errors['incorrectCharA']}</p>";
-            ?>
-        </div>
+                        <!-- Display Surname Errors -->
+                        <?php
+                        if (isset($errors['incorrectCharN'])) echo "<p class='error'>{$errors['incorrectCharN']}</p>";
+                        ?>    
+                    </div>
+                </div><!-- End Two Col -->
 
-        <div>
-            <label for="city">City:</label>
-            <input type="text" name="city"
-            value="<?php echo htmlspecialchars($c); ?>">
+                <div class="field">
+                    <label for="addressLine1" class="required">Address Line 1</label>
+                    <input type="text" name="addressLine1" placeholder="Eg. 24 Main Street"
+                    value="<?php echo htmlspecialchars($a1); ?>">
 
-            <!-- Display City Errors -->
-            <?php
-            if (isset($errors['incorrectCharC'])) echo "<p>{$errors['incorrectCharC']}</p>";
-            ?>
-        </div>
+                    <!-- Display Address Errors -->
+                    <?php
+                    if (isset($errors['incorrectCharA'])) echo "<p class='error'>{$errors['incorrectCharA']}</p>";
+                    ?>
+                </div>
 
-        <div>
-            <label for="telephone">Telephone:</label>
-            <input type="tel" name="telephone" placeholder="Eg. 019296673"
-            value="<?php echo htmlspecialchars($t); ?>">
+                <div class="field">
+                    <label for="addressLine2">Address Line 2</label>
+                    <input type="text" name="addressLine2" placeholder="Apartment, suite etc. (optional)"
+                    value="<?php echo htmlspecialchars($a2);?>">
 
-            <!-- Display Telehone Errors -->
-            <?php
-            if (isset($errors['errorT'])) echo "<p>{$errors['errorT']}</p>";
-            ?>
-        </div>
+                    <!-- Display Address Errors -->
+                    <?php
+                    if (isset($errors['incorrectCharA'])) echo "<p class='error'>{$errors['incorrectCharA']}</p>";
+                    ?>
+                </div>
 
-        <div>
-            <label for="mobile">Mobile:</label>
-            <input type="tel" name="mobile" placeholder="Eg. 0873647689"
-            value="<?php echo htmlspecialchars($m); ?>" required>
+                <div class="field">
+                    <label for="city">City</label>
+                    <input type="text" name="city" placeholder="Dublin"
+                    value="<?php echo htmlspecialchars($c); ?>">
 
-            <!-- Display Mobile Phone Errors -->
-            <?php
-            if (isset($errors['errorM'])) echo "<p>{$errors['errorM']}</p>";
-            ?>
-        </div>
+                    <!-- Display City Errors -->
+                    <?php
+                    if (isset($errors['incorrectCharC'])) echo "<p class='error'>{$errors['incorrectCharC']}</p>";
+                    ?>
+                </div>
 
-        <!-- Display empty error -->
-        <?php
-        if (isset($errors['empty'])) echo "<p>{$errors['empty']}</p>";
-        ?>
+                <div class="twoCol">
+                    <div class="field">
+                        <label for="telephone">Telephone</label>
+                        <input type="tel" name="telephone" placeholder="Eg. 019296673 (optional)"
+                        value="<?php echo htmlspecialchars($t); ?>">
 
-        <div>
-            <input type="submit" value="Sign Up">
-        </div>
-    </form>
+                        <!-- Display Telehone Errors -->
+                        <?php
+                        if (isset($errors['errorT'])) echo "<p class='error'>{$errors['errorT']}</p>";
+                        ?>
+                    </div>
+
+                    <div class="field">
+                        <label for="mobile" class="required">Mobile</label>
+                        <input type="tel" name="mobile" placeholder="Eg. 0873647689 (10 digits)"
+                        value="<?php echo htmlspecialchars($m); ?>">
+
+                        <!-- Display Mobile Phone Errors -->
+                        <?php
+                        if (isset($errors['errorM'])) echo "<p class='error'>{$errors['errorM']}</p>";
+                        ?>
+                    </div>
+                </div><!-- End Two Col -->
+
+                <!-- Display empty error -->
+                <?php
+                if (isset($errors['empty'])) echo "<p class='error'>{$errors['empty']}</p>";
+                ?>
+
+                <div>
+                    <input type="submit" value="Sign Up">
+                </div>
+
+                <!-- Redirect to Login Page-->
+                 <div class="redirect">
+                    <p> Already have an account? <a href="Login.php"> Log in here </a></p>
+                </div>
+            </form>
+        </div><!-- End formBox -->
+
+        <footer>©2025 Irish Libraries</footer>
+
+    </div><!-- End pageContent -->
 
         
         

@@ -22,7 +22,7 @@ function validation($u, $p, $cp, $f, $s, $a1, $a2, $c, $t, $m, &$errors, $conn){
     }
 
     else if(!preg_match("/^[A-Za-z0-9_]+$/", $u)){
-            $errors['incorrectCharU'] = "Invalid characters used Username can only contain, letters, numbers, and underscore";
+            $errors['incorrectCharU'] = "Username can only contain, letters, numbers, and underscore";
     }
 
     else{
@@ -51,23 +51,23 @@ function validation($u, $p, $cp, $f, $s, $a1, $a2, $c, $t, $m, &$errors, $conn){
 
     //Surname
     if(!preg_match("/^[A-Za-z'-]+$/", $s)){
-        $errors['incorrectCharN'] = "Incorrect characters used Names can only contain letters, apostrophes, and hyphens";
+        $errors['incorrectCharN'] = "Names can only contain letters and the following: ' -";
     }
     
 
     //Addresses
     if(!preg_match("/^[A-Za-z0-9 ,.'-]+$/", $a1)){
-        $errors['incorrectCharA'] = "Invalid characters used Addresses can only contain numbers, letters, dashes, and commas";
+        $errors['incorrectCharA'] = "Addresses can only contain numbers and the following: , . ' -";
     }
 
     //City
     if(!preg_match("/^[A-Za-z ,.'-]*$/", $c)){
-        $errors['incorrectCharC'] = "Invalid characters used City can only contain letters";
+        $errors['incorrectCharC'] = "City can only contain letters and the following: , . ' -";
     }
 
     //Telephone
     if(!preg_match("/^(0[124569]\d{5,7})$/", $t)){
-    $errors['errorT'] = "Telephone number has invalid starting digits" . "<br>" . "Telephone must be at least 7 digits";
+    $errors['errorT'] = "Invalid starting digits telephone must be at least 7 digits"; 
     }
 
     //Mobile 
