@@ -11,7 +11,7 @@ $c  = $formData['city'] ?? '';
 $t  = $formData['telephone'] ?? '';
 $m  = $formData['mobile'] ?? '';
 
-unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
+unset($_SESSION['errors'], $_SESSION['formData']); //Clear after use
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
 <!-- Boiler Plate -->
 <head>
     <meta charset="UTF-8" />
-    <title>Dublin Libraries Signup</title>
+    <title>Irish Libraries Signup</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content="Sign Up Page" />
     <link rel="stylesheet" href="../CSS/Signup.css">
@@ -42,7 +42,7 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
 
             <ul>
                 <li><a href="../Index.html">Home</a></li>
-                <li><a href="PHP/Login.php>">Search a Book</a></li>
+                <li><a href="Login.php">Log In</a></li>
             </ul>
         </div>
     </div>
@@ -62,8 +62,10 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
 
                     <!-- Display Username Errors -->
                     <?php 
+                    if (isset($errors['emptyU'])) echo "<p class='error'>{$errors['emptyU']}</p>";
                     if (isset($errors['whiteSpaceU'])) echo "<p class='error'>{$errors['whiteSpaceU']}</p>";
                     if (isset($errors['incorrectCharU'])) echo "<p class='error'>{$errors['incorrectCharU']}</p>";
+                    if (isset($errors['tooLongU'])) echo "<p class='error'>{$errors['tooLongU']}</p>";
                     if (isset($errors['duplicateU'])) echo "<p class='error'>{$errors['duplicateU']}</p>";
                     ?>
                 </div>
@@ -75,6 +77,7 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
                         
                         <!-- Display Password errors -->
                         <?php
+                        if (isset($errors['emptyP'])) echo "<p class='error'>{$errors['emptyP']}</p>";
                         if (isset($errors['noMatchP'])) echo "<p class='error'>{$errors['noMatchP']}</p>";
                         if (isset($errors['shortP'])) echo "<p class='error'>{$errors['shortP']}</p>";
                         ?>
@@ -83,6 +86,8 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
                     <div class="field">
                         <label for="confirmPassword" class="required">Confirm Password</label>
                         <input type="password" name="confirmPassword" placeholder="Re-enter password">
+
+                        <?php if (isset($errors['emptyCP'])) echo "<p class='error'>{$errors['emptyCP']}</p>";?>
                     </div>
                 </div><!-- End twoCol -->
 
@@ -94,7 +99,8 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
 
                         <!-- Display First Name Errors -->
                         <?php
-                        if (isset($errors['incorrectCharN'])) echo "<p class='error'>{$errors['incorrectCharN']}</p>";
+                        if (isset($errors['emptyFN'])) echo "<p class='error'>{$errors['emptyFN']}</p>";
+                        if (isset($errors['incorrectCharFN'])) echo "<p class='error'>{$errors['incorrectCharFN']}</p>";
                         ?>            
                     </div>
 
@@ -105,7 +111,8 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
 
                         <!-- Display Surname Errors -->
                         <?php
-                        if (isset($errors['incorrectCharN'])) echo "<p class='error'>{$errors['incorrectCharN']}</p>";
+                        if (isset($errors['emptyS'])) echo "<p class='error'>{$errors['emptyS']}</p>";
+                        if (isset($errors['incorrectCharS'])) echo "<p class='error'>{$errors['incorrectCharS']}</p>";
                         ?>    
                     </div>
                 </div><!-- End Two Col -->
@@ -117,7 +124,8 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
 
                     <!-- Display Address Errors -->
                     <?php
-                    if (isset($errors['incorrectCharA'])) echo "<p class='error'>{$errors['incorrectCharA']}</p>";
+                    if (isset($errors['emptyA1'])) echo "<p class='error'>{$errors['emptyA1']}</p>";
+                    if (isset($errors['incorrectCharA1'])) echo "<p class='error'>{$errors['incorrectCharA1']}</p>";
                     ?>
                 </div>
 
@@ -128,7 +136,7 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
 
                     <!-- Display Address Errors -->
                     <?php
-                    if (isset($errors['incorrectCharA'])) echo "<p class='error'>{$errors['incorrectCharA']}</p>";
+                    if (isset($errors['incorrectCharA2'])) echo "<p class='error'>{$errors['incorrectCharA2']}</p>";
                     ?>
                 </div>
 
@@ -162,15 +170,11 @@ unset($_SESSION['errors'], $_SESSION['formData']); // clear after use
 
                         <!-- Display Mobile Phone Errors -->
                         <?php
+                        if (isset($errors['emptyM'])) echo "<p class='error'>{$errors['emptyM']}</p>";
                         if (isset($errors['errorM'])) echo "<p class='error'>{$errors['errorM']}</p>";
                         ?>
                     </div>
                 </div><!-- End Two Col -->
-
-                <!-- Display empty error -->
-                <?php
-                if (isset($errors['empty'])) echo "<p class='error'>{$errors['empty']}</p>";
-                ?>
 
                 <div>
                     <input type="submit" value="Sign Up">

@@ -1,0 +1,420 @@
+/* -----------------------------------------------------------
+   Global base (keeps your variables and core resets consistent)
+----------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Montserrat&family=Sacramento&display=swap");
+
+:root {
+    /* Colors */
+    --primary-bg: #EDE6D6;
+    --primary-text: #513330;
+    --primary-dark: #513330;
+    --accent-light: #d4c6af;
+    --shadow-color: #b6a2a0;
+
+    /* Fonts */
+    --font-primary: "Merriweather Sans", sans-serif;
+    --font-size-base: 1rem;
+    --font-size-large: 1.3rem;
+
+    /* Spacing */
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 4.5em;
+
+    /* Layout (Border and Nav Size) */
+    --border-radius: 25px;
+    --border-width: 3px;
+    --nav-height: 90px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-slow: 0.3s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: var(--primary-bg);
+    font-family: var(--font-primary);
+    color: var(--primary-text);
+    line-height: 1.4;
+}
+
+/* Paragraph base */
+p {
+    color: var(--primary-text);
+    font-size: var(--font-size-base);
+}
+
+/* Navbar Layout */
+.container {
+    position: sticky;
+    top: 0;
+    height: var(--nav-height);
+    background-color: var(--primary-bg);
+    border-bottom: 1px solid var(--accent-light);
+    z-index: 2;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.navbar ul {
+    display: flex;
+    margin-left: auto;
+    margin-right: 40px;
+}
+
+.navbar ul li {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0 40px;
+}
+
+/* Logo in Navbar */
+.navTitle {
+    padding-left: 15px;
+}
+
+.logo img {
+    height: var(--spacing-xl);
+    width: auto;
+    margin-left: var(--spacing-lg);
+}
+
+/* Links */
+a {
+    color: var(--primary-text);
+    text-decoration: none;
+    transition: border var(--transition-slow);
+}
+
+.navbar a {
+    border-bottom: 2px solid transparent;
+}
+
+.navbar a:hover {
+    border-bottom: 2px solid var(--primary-dark);
+}
+
+/* -----------------------------------------------------------
+   Page container (below your existing navbar)
+----------------------------------------------------------- */
+.pageContent {
+    max-width: 1100px;
+    margin: 30px auto 120px; /* bottom space for fixed footer */
+    padding: 0 var(--spacing-lg);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    position: relative;
+    z-index: 1; /* keep content above subtle shadows */
+}
+
+.pageContent h3,
+.pageContent h4 {
+    color: var(--primary-dark);
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.pageContent > p {
+    font-size: var(--font-size-large);
+    color: var(--primary-dark);
+}
+
+/* -----------------------------------------------------------
+   Search box and form
+----------------------------------------------------------- */
+.searchBox {
+    background: var(--primary-bg);
+    border: var(--border-width) solid var(--accent-light);
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    padding: 20px;
+}
+
+.searchForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 16px;
+    align-items: end;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field label {
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.field input[type="text"],
+.field select {
+    padding: 10px 12px;
+    border: 1px solid var(--accent-light);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--primary-text);
+    outline: none;
+    transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.field input[type="text"]::placeholder {
+    color: #8a6f6c;
+}
+
+.field input[type="text"]:focus,
+.field select:focus {
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 3px rgba(81, 51, 48, 0.15);
+}
+
+/* Search submit button */
+.searchForm button[type="submit"] {
+    align-self: center;
+    padding: 12px 18px;
+    border-radius: 14px;
+    border: var(--border-width) solid var(--primary-dark);
+    background: var(--primary-dark);
+    color: #fff;
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+}
+
+.searchForm button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(81, 51, 48, 0.25);
+}
+
+/* -----------------------------------------------------------
+   Search results section
+----------------------------------------------------------- */
+.searchResults {
+    background: #fff;
+    border: 1px solid var(--accent-light);
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    padding: 20px;
+}
+
+.searchResults h4 {
+    margin-bottom: 16px;
+}
+
+/* Results list as cards */
+.searchResults ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Each book card */
+.searchResults li {
+    border: 1px solid var(--accent-light);
+    border-radius: 18px;
+    padding: 16px;
+    background: var(--primary-bg);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px 12px;
+    align-items: center;
+}
+
+.searchResults li strong {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+}
+
+/* Tidy spacing for lines; you can keep <br>, but spacing helps */
+.searchResults li > * {
+    margin: 2px 0;
+}
+
+/* Positioning: left text and right actions/state */
+.searchResults li form,
+.searchResults li .unavailable {
+    grid-column: 2 / 3;
+    justify-self: end;
+}
+
+.searchResults li form button {
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: var(--border-width) solid var(--primary-dark);
+    background: var(--primary-dark);
+    color: #fff;
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+}
+
+.searchResults li form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(81, 51, 48, 0.25);
+}
+
+/* Unavailable pill */
+.unavailable {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #e8d9d7;
+    color: var(--primary-dark);
+    font-weight: 600;
+    border: 1px solid var(--accent-light);
+}
+
+/* -----------------------------------------------------------
+   Pagination
+----------------------------------------------------------- */
+.pagination {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    padding: 0;
+    margin: 18px 0 0 0;
+    flex-wrap: wrap;
+}
+
+.pagination li {
+    border: 1px solid var(--accent-light);
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.pagination li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(81, 51, 48, 0.15);
+}
+
+.pagination li a {
+    display: block;
+    padding: 8px 12px;
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+.pagination li.active a {
+    background: var(--primary-dark);
+    color: #fff;
+}
+
+/* -----------------------------------------------------------
+   My Reserved Books section
+----------------------------------------------------------- */
+.pageContent h4 + ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+}
+
+.pageContent h4 + ul li {
+    border: 1px solid var(--accent-light);
+    border-radius: 18px;
+    padding: 16px;
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px 12px;
+    align-items: center;
+}
+
+.pageContent h4 + ul li strong {
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+}
+
+/* Cancel button */
+.pageContent h4 + ul li form {
+    grid-column: 2 / 3;
+    justify-self: end;
+}
+
+.pageContent h4 + ul li form button {
+    padding: 10px 16px;
+    border-radius: 14px;
+    border: var(--border-width) solid var(--primary-dark);
+    background: var(--primary-bg);
+    color: var(--primary-dark);
+    cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+}
+
+.pageContent h4 + ul li form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(81, 51, 48, 0.2);
+}
+
+/* -----------------------------------------------------------
+   Utility and responsive tweaks
+----------------------------------------------------------- */
+.message {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.loginWelcome {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid var(--primary-text);
+    border-radius: 25px;
+    background-color: var(--accent-light);
+    font-size: 1.2em;
+    color: var(--primary-text);
+}
+
+/* Reduce grid density on narrower screens */
+@media (max-width: 900px) {
+    .searchForm {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Single-column layout on mobile */
+@media (max-width: 600px) {
+    .pageContent {
+        padding: 0 var(--spacing-md);
+    }
+    .searchForm {
+        grid-template-columns: 1fr;
+    }
+    .searchForm button[type="submit"] {
+        width: 100%;
+    }
+    .searchResults li {
+        grid-template-columns: 1fr;
+    }
+    .searchResults li form,
+    .searchResults li .unavailable {
+        grid-column: 1 / 2;
+        justify-self: start;
+    }
+    .pageContent h4 + ul li {
+        grid-template-columns: 1fr;
+    }
+}

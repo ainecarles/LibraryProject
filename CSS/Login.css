@@ -7,11 +7,14 @@
     --primary-dark: #513330;
     --accent-light: #d4c6af;
     --shadow-color: #b6a2a0;
+    --form-bg: white;
     
     /* Fonts */
     --font-primary: "Merriweather Sans", sans-serif;
-    --font-size-base: 1rem;
+    --font-size-base: 0.9rem;
     --font-size-large: 1.3rem;
+    --font-size-error: 0.7rem;
+    
     
     /* Spacing */
     --spacing-sm: 1rem;
@@ -21,12 +24,14 @@
     
     /* Layout (Border and Nav Size) */
     --border-radius: 25px;
+    --form-radius: 15px;
     --border-width: 3px;
     --nav-height: 90px;
-    
-    /* Transitions */
+
+     /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-slow: 0.3s ease-in-out;
+    
 }
 
 /* Base Styles */
@@ -40,11 +45,14 @@ body {
     background-color: var(--primary-bg);
     font-family: var(--font-primary);
     overflow: hidden;
-    
 }
 
 p {
     color: var(--primary-text);
+}
+
+h3{
+    font-size: var(--font-size-large);
 }
 
 /* Navbar Layout */
@@ -91,90 +99,17 @@ p {
 /* Links */
 a {
     color: var(--primary-text);
-    text-decoration: none;
-    transition: border var(--transition-slow);
 }
 
 .navbar a {
     border-bottom: 2px solid transparent;
+    text-decoration: none;
+    transition: border var(--transition-slow);
 }
 
 .navbar a:hover {
     border-bottom: 2px solid var(--primary-dark);
 }
-
-/* Page Content */
-.pageContent {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    column-gap: 50px;
-    padding: 5%;
-}
-
-.leftContent {
-    grid-column: 1;
-    justify-self: center;
-    align-self: center;
-}
-
-.leftContent p {
-    font-size: var(--font-size-large);
-}
-
-.welcome {
-    padding-bottom: var(--spacing-md);
-}
-
-.rightImg {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: center;
-    align-self: end;
-}
-
-.rightImg img {
-    width: 45vw;
-    max-width: 600px;
-    border-radius: var(--border-radius);
-}
-
-/* Buttons (Login and Signup) */
-.buttonRow {
-    grid-column: 1;/* Position buttons in col 1 row 2 of pageContent grid */
-    grid-row: 2;
-    align-self: start;
-
-    display: grid;/* Create grid within a grid, 2 columns to position buttons */
-    grid-template-columns: 0.7fr 1fr;
-}
-
-.buttonRow a {
-    padding: 20px 50px;
-    border-radius: var(--border-radius);
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.buttonRow a:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px var(--shadow-color);
-}
-
-.btn1 {
-    background-color: var(--primary-dark);
-    color: white;   
-}
-
-.btn2 {
-    border: var(--border-width) solid var(--primary-dark);
-    background-color: var(--primary-bg);
-    color: var(--primary-text);
-}
-
-/* Button Positioning */
-.btn1 { grid-column: 1; justify-self: start; }
-.btn2 { grid-column: 2; justify-self: start; }
-
 
 /* Footer */
 footer {
@@ -188,17 +123,72 @@ footer {
     color: var(--shadow-color); 
 }
 
-.lm{
-    margin: 20px 20px;
+/* Page Content and Form */
+.pageContent{
+    margin-top: var(--spacing-lg);
+    gap: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.ll{
-    display: inline-block;       
-    padding: 20px 20px;        
-    border: 2px solid var(--primary-text);     
-    border-radius: 12px;        
-    background-color: var(--primary-bg);  
-    font-size: var(--font-size-base);            
-    color: var(--primary-text);
-        
+
+.formBox{
+    background-color: var(--form-bg);
+    padding: 30px 40px;
+    width: 600px;
+    border-radius: var(--form-radius);
+}
+
+.field{
+    margin-bottom: 20px;
+}
+
+.field label{
+    font-size: var(--font-size-base);
+    margin-bottom: 6px;
+    display: block;
+}
+
+
+.error{
+    color: red;
+    font-size: var(--font-size-error);
+}
+
+/* Input Box */
+.field input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--accent-light);
+    border-radius: 6px;
+    background: var(--primary-bg);
+}
+
+
+/* Submit button */
+input[type="submit"] {
+    width: 100%;
+    padding: var(--spacing-sm);
+    background: var(--primary-dark);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    margin-top: var(--spacing-lg);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input[type="submit"]:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px var(--shadow-color);
+}
+
+/* Log In Link */
+.redirect{
+    font-size: var(--font-size-base);
+    margin-top: var(--spacing-sm);
+    text-align: center;
 }
