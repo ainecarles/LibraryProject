@@ -188,7 +188,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $_SESSION['username'] = $u; 
             $stmt->close();
             $conn->close();
-            header("Location: MyProfile.php");
+            header("Location: ../Index.php");
             exit;
         }//End if
 
@@ -207,4 +207,3 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 ?>
 
-<!--Remember to fucking encrypt the password too omfg ->

@@ -41,7 +41,7 @@ unset($_SESSION['errors'], $_SESSION['formData']); //Clear after use
             <p class="navTitle">Irish Libraries</p>
 
             <ul>
-                <li><a href="../Index.html">Home</a></li>
+                <li><a href="../Index.php">Home</a></li>
                 <li><a href="Login.php">Log In</a></li>
             </ul>
         </div>

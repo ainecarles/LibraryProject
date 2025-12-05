@@ -1,6 +1,3 @@
-/* -----------------------------------------------------------
-   Global base (keeps your variables and core resets consistent)
------------------------------------------------------------ */
 @import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans&family=Montserrat&family=Sacramento&display=swap");
 
 :root {
@@ -38,18 +35,12 @@
     box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
-}
-
 body {
     background-color: var(--primary-bg);
     font-family: var(--font-primary);
     color: var(--primary-text);
-    line-height: 1.4;
 }
 
-/* Paragraph base */
 p {
     color: var(--primary-text);
     font-size: var(--font-size-base);
@@ -111,18 +102,16 @@ a {
     border-bottom: 2px solid var(--primary-dark);
 }
 
-/* -----------------------------------------------------------
-   Page container (below your existing navbar)
------------------------------------------------------------ */
+/* Page Content*/
 .pageContent {
     max-width: 1100px;
-    margin: 30px auto 120px; /* bottom space for fixed footer */
+    margin: 30px auto; 
     padding: 0 var(--spacing-lg);
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
     position: relative;
-    z-index: 1; /* keep content above subtle shadows */
+    z-index: 1;
 }
 
 .pageContent h3,
@@ -137,20 +126,21 @@ a {
     color: var(--primary-dark);
 }
 
-/* -----------------------------------------------------------
-   Search box and form
------------------------------------------------------------ */
+/* Top Part Of Search Form */
 .searchBox {
     background: var(--primary-bg);
     border: var(--border-width) solid var(--accent-light);
     border-radius: var(--border-radius);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 6px 20px var(--shadow-color);
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
 }
 
 .searchForm {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr auto;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 16px;
     align-items: end;
 }
@@ -162,7 +152,7 @@ a {
 }
 
 .field label {
-    font-weight: 600;
+    font-weight: 500;
     color: var(--primary-dark);
 }
 
@@ -184,34 +174,62 @@ a {
 .field input[type="text"]:focus,
 .field select:focus {
     border-color: var(--primary-dark);
-    box-shadow: 0 0 0 3px rgba(81, 51, 48, 0.15);
+    box-shadow: 0 0 0 3px var(--shadow-color);
 }
 
-/* Search submit button */
-.searchForm button[type="submit"] {
-    align-self: center;
+/* Option styling */
+.field select option {
+    background: var(--primary-bg);                     
+    color: var(--primary-dark);
+    padding: 8px;
+}
+
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center; 
     padding: 12px 18px;
     border-radius: 14px;
     border: var(--border-width) solid var(--primary-dark);
     background: var(--primary-dark);
     color: #fff;
     cursor: pointer;
+    text-decoration: none;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
 }
 
-.searchForm button[type="submit"]:hover {
+
+
+.btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(81, 51, 48, 0.25);
+    box-shadow: 0 6px 18px var(--shadow-color);
 }
 
-/* -----------------------------------------------------------
-   Search results section
------------------------------------------------------------ */
+.cancelBtn {
+    padding: 6px 9px;
+    border-radius: 14px;
+    border: var(--border-width) solid var(--primary-dark);
+    cursor: pointer;
+    text-decoration: none;
+    background: var(--primary-dark);
+    color: #fff;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+}
+
+.cancelBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px var(--shadow-color);
+}
+
+
+/* Search Results Section */
 .searchResults {
     background: #fff;
     border: 1px solid var(--accent-light);
     border-radius: var(--border-radius);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 6px 20px var(--shadow-color);
     padding: 20px;
 }
 
@@ -219,7 +237,6 @@ a {
     margin-bottom: 16px;
 }
 
-/* Results list as cards */
 .searchResults ul {
     list-style: none;
     display: grid;
@@ -229,7 +246,6 @@ a {
     margin: 0;
 }
 
-/* Each book card */
 .searchResults li {
     border: 1px solid var(--accent-light);
     border-radius: 18px;
@@ -242,16 +258,14 @@ a {
 }
 
 .searchResults li strong {
-    font-size: 1.1rem;
+    font-size: var(--font-size-base);
     color: var(--primary-dark);
 }
 
-/* Tidy spacing for lines; you can keep <br>, but spacing helps */
 .searchResults li > * {
     margin: 2px 0;
 }
 
-/* Positioning: left text and right actions/state */
 .searchResults li form,
 .searchResults li .unavailable {
     grid-column: 2 / 3;
@@ -270,12 +284,11 @@ a {
 
 .searchResults li form button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(81, 51, 48, 0.25);
+    box-shadow: 0 6px 18px var(--shadow-color);
 }
 
-/* Unavailable pill */
 .unavailable {
-    display: inline-block;
+    display: inline-flex;
     padding: 8px 12px;
     border-radius: 999px;
     background: #e8d9d7;
@@ -284,137 +297,45 @@ a {
     border: 1px solid var(--accent-light);
 }
 
-/* -----------------------------------------------------------
-   Pagination
------------------------------------------------------------ */
+/* Pagination */
 .pagination {
-    list-style: none;
-    display: flex;
-    gap: 8px;
-    padding: 0;
-    margin: 18px 0 0 0;
-    flex-wrap: wrap;
+  display: flex;              
+  justify-content: center;    
+  gap: 6px;                  
+  margin-top: 12px;           
+  font-size: 0.9rem;          
+  list-style: none;           
+  padding: 0;
 }
 
 .pagination li {
-    border: 1px solid var(--accent-light);
-    border-radius: 10px;
-    background: #fff;
-    overflow: hidden;
-    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
-}
-
-.pagination li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(81, 51, 48, 0.15);
+  display: inline;           
 }
 
 .pagination li a {
-    display: block;
-    padding: 8px 12px;
-    color: var(--primary-dark);
-    text-decoration: none;
+  color: var(--primary-dark);
+  text-decoration: none;
+  padding: 4px 8px;           
+  border-radius: 6px;
+  transition: background var(--transition-fast);
+}
+
+.pagination li a:hover {
+  background: var(--accent-light);
 }
 
 .pagination li.active a {
-    background: var(--primary-dark);
-    color: #fff;
+  background: var(--primary-dark);
+  color: #fff;
 }
 
-/* -----------------------------------------------------------
-   My Reserved Books section
------------------------------------------------------------ */
-.pageContent h4 + ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 0;
-    margin: 0;
-}
-
-.pageContent h4 + ul li {
-    border: 1px solid var(--accent-light);
-    border-radius: 18px;
-    padding: 16px;
-    background: #fff;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 10px 12px;
-    align-items: center;
-}
-
-.pageContent h4 + ul li strong {
-    font-size: 1.1rem;
-    color: var(--primary-dark);
-}
-
-/* Cancel button */
-.pageContent h4 + ul li form {
-    grid-column: 2 / 3;
-    justify-self: end;
-}
-
-.pageContent h4 + ul li form button {
-    padding: 10px 16px;
-    border-radius: 14px;
-    border: var(--border-width) solid var(--primary-dark);
-    background: var(--primary-bg);
-    color: var(--primary-dark);
-    cursor: pointer;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
-}
-
-.pageContent h4 + ul li form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(81, 51, 48, 0.2);
-}
-
-/* -----------------------------------------------------------
-   Utility and responsive tweaks
------------------------------------------------------------ */
-.message {
+/* Footer */
+footer {
+    border-top: 1px solid var(--accent-light);
+    bottom: 0;
+    left: 0;
+    width: 100%;
     text-align: center;
-    margin: 20px 0;
-}
-
-.loginWelcome {
-    display: inline-block;
-    padding: 10px 20px;
-    border: 2px solid var(--primary-text);
-    border-radius: 25px;
-    background-color: var(--accent-light);
-    font-size: 1.2em;
-    color: var(--primary-text);
-}
-
-/* Reduce grid density on narrower screens */
-@media (max-width: 900px) {
-    .searchForm {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-/* Single-column layout on mobile */
-@media (max-width: 600px) {
-    .pageContent {
-        padding: 0 var(--spacing-md);
-    }
-    .searchForm {
-        grid-template-columns: 1fr;
-    }
-    .searchForm button[type="submit"] {
-        width: 100%;
-    }
-    .searchResults li {
-        grid-template-columns: 1fr;
-    }
-    .searchResults li form,
-    .searchResults li .unavailable {
-        grid-column: 1 / 2;
-        justify-self: start;
-    }
-    .pageContent h4 + ul li {
-        grid-template-columns: 1fr;
-    }
+    padding: var(--spacing-lg);
+    color: var(--shadow-color); 
 }
