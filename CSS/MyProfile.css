@@ -39,6 +39,7 @@ body {
     background-color: var(--primary-bg);
     font-family: var(--font-primary);
     color: var(--primary-text);
+    
 }
 
 p {
@@ -112,6 +113,7 @@ a {
     gap: 24px;
     position: relative;
     z-index: 1;
+    padding-bottom: var(--spacing-xl)
 }
 
 .pageContent h3,
