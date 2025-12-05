@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$_SESSION['loggedIn'] ?? '';
+$loggedIn = $_SESSION['loggedIn'] ?? false;
 $username = $_SESSION['username'] ?? '';
 ?>
 
@@ -31,7 +31,7 @@ $username = $_SESSION['username'] ?? '';
             <p class="navTitle">Irish Libraries</p>
 
             <ul>
-                <li>
+                <li><!-- Display Different Options on NavBar if User is Logeged In-->
                     <?php if(!empty($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true):?>
                         <li><a href="PHP/MyProfile.php">My Profile</a></li>
                         <li><a href="PHP/LogOut.php">Log Out</a></li>
@@ -54,7 +54,7 @@ $username = $_SESSION['username'] ?? '';
         
         <?php if(!empty($_SESSION['loggedIn']) && $_SESSION['loggedIn'] === true):?>
             <div class="lm">
-                <p class="ll">Welcome, <?php echo htmlspecialchars($username);?></p> 
+                <p class="ll">Welcome, <?php echo htmlspecialchars($username);?></p> <!-- Welcome Message if User is Logged In-->
             </div>
         <?php else: ?>
             <div class="buttonRow">

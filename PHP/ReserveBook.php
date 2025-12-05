@@ -26,12 +26,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $updateStmt = $conn->prepare($updateSql);
         $updateStmt->bind_param("s", $isbn);
         $updateStmt->execute();
-
-        $_SESSION['message'] = "Book reserved successfully";
-
-    }
-    else{
-        $_SESSION['message'] = "Error reserving book" . $stmt->error;
     }
 
 }

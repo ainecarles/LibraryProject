@@ -1,5 +1,6 @@
 <?php
 
+//Set and Unset Session Variables
 session_start();
 $errors = $_SESSION['loginErrors'] ?? '';
 $Data = $_SESSION['Data'] ?? [];

@@ -3,32 +3,34 @@ session_start();
 
 require_once "PHPConntectSQL.php";
 
+//If User isn't Logged in, Redirect to Login Page
 if (!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn']) {
     header("Location: Login.php");
     exit;
 }
 
+//Set Session Variable
 $username = $_SESSION['username'] ?? '';
 
-// Clean helper
+// Function to Clean Data
 function cleanData($data) {
     $data = trim($data);
     $data = stripslashes($data);
     return $data;
 }
 
-// Always define these for the form (avoid undefined warnings)
+
 $title    = cleanData($_GET['title']   ?? '');
 $author   = cleanData($_GET['author']  ?? '');
 $category = $_GET['category'] ?? 'allCategories';
 
-// Pagination vars (used only if a search happens)
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+// Pagination Variables (only used if a search happens)
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;//If the URL includes page, use it as the page number. Otherwise, set page to 1.
 if ($page < 1) { $page = 1; }
 $limit = 5;
 $startFrom = ($page - 1) * $limit;
 
-// Flag: did user actually perform a search?
+// Flag to check if the user performed a search
 $searchPerformed = ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET));
 
 
@@ -37,9 +39,10 @@ if ($searchPerformed) {
     $sql = "SELECT b.*, c.CategoryDescription
             FROM books b
             JOIN categories c ON b.CategoryID = c.CategoryID
-            WHERE 1";
-    $params = [];
-    $types  = "";
+            WHERE 1";//Append AND easily
+
+    $params = [];//Array to Store Variables to be Injected
+    $types  = "";//String to store data types
 
     if (!empty($title)) {
         $sql .= " AND b.BookTitle LIKE ?";
@@ -94,16 +97,18 @@ if ($searchPerformed) {
     }
 
     $countStmt = $conn->prepare($countSql);
+
     if (!empty($countParams)) {
         $countStmt->bind_param($countTypes, ...$countParams);
     }
+
     $countStmt->execute();
-    $countResult  = $countStmt->get_result();
-    $totalRecords = (int)$countResult->fetch_assoc()['total'];
-    $totalPages   = max(1, (int)ceil($totalRecords / $limit));
+    $countResult  = $countStmt->get_result();//Get result of the count query
+    $totalRecords = (int)$countResult->fetch_assoc()['total'];//Get the result of the count query as an associative array("total" -> result)
+    $totalPages   = max(1, (int)ceil($totalRecords / $limit));//ceil() - rounds up to nearest whole number
 }
 
-// Always load reserved books (independent of search)
+// Always load reserved books (Doesnt depend on user makking a search)
 $reserveSql = "SELECT b.ISBN, b.BookTitle, b.Author, r.ReservedDate, c.CategoryDescription
                FROM reservations r
                JOIN books b ON r.ISBN = b.ISBN
@@ -151,7 +156,7 @@ $reserveResult = $reserveStmt->get_result();
     <div class="pageContent">
 
         <h3>My Profile</h3>
-        <p>Welcome, <?php echo htmlspecialchars($username);?></p>
+        <p>Welcome, <?php echo htmlspecialchars($username);?></p><!-- Welcome Message Displays Username-->
 
         <div class="searchBox">
             <form class="searchForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="get">
@@ -169,7 +174,7 @@ $reserveResult = $reserveStmt->get_result();
                 <div class="field">
                     <label for="category">Category</label>
                     <select name="category">
-                        <option value="allCategories" <?= ($category === "allCategories") ? 'selected' : '' ?>>All Categories</option>
+                        <option value="allCategories" <?= ($category === "allCategories") ? 'selected' : '' ?>>All Categories</option><!-- Have allCategories as default when page first loads -->
 
                         <!-- Retrieve Values from Category Table -->
                         <?php
@@ -233,14 +238,13 @@ $reserveResult = $reserveStmt->get_result();
                 $active = "";
             }
 
-            $active = ($i == $page) ? "class='active'" : "";
             echo "<li $active><a href='?page=$i&title=" . urlencode($title) .//urlencode() - Esnures strings are safe to insert into a URL
             "&author=" . urlencode($author) .
             "&category=" . urlencode($category) . "'>$i</a></li>";
         }
         echo '</ul>';
         ?>
-        <?php elseif ($searchPerformed): ?><!-- First if statement = false, but form was still submitted with GET so this runs-->
+        <?php elseif ($searchPerformed): ?><!-- First if statement = false, but search was still performed so this runs-->
             <p>No books found matching your criteria.</p>
         <?php endif; ?>
 

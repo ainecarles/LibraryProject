@@ -7,6 +7,7 @@ require_once "PHPConntectSQL.php";
 //Errors array to store errors
 $errors = [];
 
+//Function To Catch and DIsplay Errors
 function validation($user, $pass, &$errors) {
 
     if (empty($user)) {

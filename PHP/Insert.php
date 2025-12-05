@@ -108,7 +108,7 @@ function validation($u, $p, $cp, $f, $s, $a1, $a2, $c, $t, $m, &$errors, $conn){
 
     //Telephone
     if(!empty($t)){
-        if(!preg_match("/^(0[124569]\d{5,7})$/", $t)){
+        if(!preg_match("/^(0[124569]\d{5,7})$/", $t)){//Telephone is 7-9 digits long
             $errors['errorT'] = "Invalid starting digits telephone must be at least 7 digits"; 
         }
     }
@@ -145,7 +145,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $c = $_POST['city'];
 
     $t = $_POST['telephone'];
-    $t = preg_replace("/\D/", '', $t);
+    $t = preg_replace("/\D/", '', $t);//Replace everything that isn't a digit with an empty string
 
     $m = $_POST['mobile'];
     $m = preg_replace("/\D/", '', $m);;
