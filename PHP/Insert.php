@@ -122,8 +122,7 @@ function validation($u, $p, $cp, $f, $s, $a1, $a2, $c, $t, $m, &$errors, $conn){
         $errors['errorM'] = "Mobile number must start with 08 and be 10 digits";
     }
 
-}//End validatio
-// n
+}//End validation
 
 //Function for cleaning input
 function cleanData($data){

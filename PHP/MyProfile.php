@@ -31,7 +31,7 @@ $limit = 5;
 $startFrom = ($page - 1) * $limit;
 
 // Flag to check if the user performed a search
-$searchPerformed = ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET));
+$searchPerformed = ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET));//Returns a boolean
 
 
 // If a search was performed, run the search query
